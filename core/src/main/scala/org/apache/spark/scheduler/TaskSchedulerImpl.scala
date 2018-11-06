@@ -165,6 +165,8 @@ private[spark] class TaskSchedulerImpl(
           new FIFOSchedulableBuilder(rootPool)
         case SchedulingMode.FAIR =>
           new FairSchedulableBuilder(rootPool, conf)
+        case SchedulingMode.SIN =>
+          new SinSchedulableBuilder(rootPool)
         case _ =>
           throw new IllegalArgumentException(s"Unsupported $SCHEDULER_MODE_PROPERTY: " +
           s"$schedulingMode")
@@ -308,6 +310,7 @@ private[spark] class TaskSchedulerImpl(
     var launchedTask = false
     // nodes and executors that are blacklisted for the entire application have already been
     // filtered out by this point
+    logWarning(s"Number of offers: $shuffledOffers.size")
     for (i <- 0 until shuffledOffers.size) {
       val execId = shuffledOffers(i).executorId
       val host = shuffledOffers(i).host
@@ -348,6 +351,7 @@ private[spark] class TaskSchedulerImpl(
   def resourceOffers(offers: IndexedSeq[WorkerOffer]): Seq[Seq[TaskDescription]] = synchronized {
     // Mark each slave as alive and remember its hostname
     // Also track if new executor is added
+    logWarning(s"Number of resource offers: $offers.size")
     var newExecAvail = false
     for (o <- offers) {
       if (!hostToExecutors.contains(o.host)) {

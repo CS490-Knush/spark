@@ -29,7 +29,7 @@
   sc <- SparkR:::callJStatic("org.apache.spark.sql.api.r.SQLUtils", "getJavaSparkContext", spark)
   assign("sc", sc, envir = .GlobalEnv)
   sparkVer <- SparkR:::callJMethod(sc, "version")
-  cat("\n Welcome to")
+  cat("\n Welcome to Anushree")
   cat("\n")
   cat("    ____              __", "\n")
   cat("   / __/__  ___ _____/ /__", "\n")

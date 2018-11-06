@@ -113,7 +113,7 @@ private[spark] class SparkSubmit extends Logging {
 
   /** Print version information to the log. */
   private def printVersion(): Unit = {
-    logInfo("""Welcome to
+    logInfo("""Welcome to Anushree
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/

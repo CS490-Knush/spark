@@ -54,7 +54,7 @@ atexit.register(lambda: sc.stop())
 sqlContext = spark._wrapped
 sqlCtx = sqlContext
 
-print(r"""Welcome to
+print(r"""Welcome to Anushree's
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/

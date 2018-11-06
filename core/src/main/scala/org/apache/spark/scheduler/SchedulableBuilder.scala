@@ -53,6 +53,18 @@ private[spark] class FIFOSchedulableBuilder(val rootPool: Pool)
   }
 }
 
+private[spark] class SinSchedulableBuilder(val rootPool: Pool)
+  extends SchedulableBuilder with Logging {
+
+  override def buildPools() {
+    // nothing
+  }
+
+  override def addTaskSetManager(manager: Schedulable, properties: Properties) {
+    rootPool.addSchedulable(manager)
+  }
+}
+
 private[spark] class FairSchedulableBuilder(val rootPool: Pool, conf: SparkConf)
   extends SchedulableBuilder with Logging {
 

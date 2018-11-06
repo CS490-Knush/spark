@@ -40,6 +40,20 @@ private[spark] class FIFOSchedulingAlgorithm extends SchedulingAlgorithm {
   }
 }
 
+private[spark] class SinSchedulingAlgorithm extends SchedulingAlgorithm {
+  override def comparator(s1: Schedulable, s2: Schedulable): Boolean = {
+    val priority1 = s1.priority
+    val priority2 = s2.priority
+    var res = math.signum(priority1 - priority2)
+    if (res == 0) {
+      val stageId1 = s1.stageId
+      val stageId2 = s2.stageId
+      res = math.signum(stageId1 - stageId2)
+    }
+    res < 0
+  }
+}
+
 private[spark] class FairSchedulingAlgorithm extends SchedulingAlgorithm {
   override def comparator(s1: Schedulable, s2: Schedulable): Boolean = {
     val minShare1 = s1.minShare

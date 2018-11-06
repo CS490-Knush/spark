@@ -117,7 +117,7 @@ class SparkILoop(in0: Option[BufferedReader], out: JPrintWriter)
   /** Print a welcome message */
   override def printWelcome() {
     import org.apache.spark.SPARK_VERSION
-    echo("""Welcome to
+    echo("""Welcome to Anushree
       ____              __
      / __/__  ___ _____/ /__
     _\ \/ _ \/ _ `/ __/  '_/
