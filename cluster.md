@@ -49,10 +49,14 @@ Note: the OpenJDK version does not work with Spark - you have to install the Ora
 * You need at least 2 workers if you want to submit a job (one for the driver), so if you only have one slave then start a slave on the master node as well
 `./bin/spark-submit --class org.apache.spark.examples.SparkPi --master spark://<Cluster IP>:7077 --deploy-mode cluster examples/target/scala-2.11/jars/spark-examples_2.11-3.0.0-SNAPSHOT.jar`
 
+# How to Benchmark using spark-bench
 ## Benchmarking
 1. `wget https://github.com/CODAIT/spark-bench/releases/download/v99/spark-bench_2.3.0_0.4.0-RELEASE_99.tgz` in master 
 2. `tar -xvzf spark-bench_2.3.0_0.4.0-RELEASE_99.tgz`
 3. `export SPARK_HOME=/home/anushreeagrawal/spark`
+4. `export SPARK_MASTER_HOST=spark://instance-2.us-east1-b.c.cpsc490-222104.internal:7077`
+5. `./bin/spark-bench.sh ../spark/benchmark_confs/<CONF_NAME>`
+Notes: Minimium memory requirements is probably around 265.4 MB, memory cannot include decimals in the conf file, benchmark-output file needs extension.
 
 
 
