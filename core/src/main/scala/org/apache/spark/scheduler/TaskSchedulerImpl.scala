@@ -298,7 +298,6 @@ private[spark] class TaskSchedulerImpl(
     manager.parent.removeSchedulable(manager)
     logInfo(s"Removed TaskSet ${manager.taskSet.id}, whose tasks have all completed, from pool" +
       s" ${manager.parent.name}")
-    logInfo("Kristina ass compiler optimization")
   }
 
   private def resourceOfferSingleTaskSet(
