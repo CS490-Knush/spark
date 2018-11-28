@@ -28,7 +28,7 @@ object PoolExample {
     // before FAIR pool
    Range(0, 15).foreach { i =>
      val csv = spark.read
-       .csv(s"file:////Users/anushreeagrawal/yhack-website/2017-website/acceptances_r1.csv")
+       .csv(s"file:////home/anushreeagrawal/spark/csv_file.csv")
      println(csv.count)
      csv.foreachPartition(i => println(i))
    }
