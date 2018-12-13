@@ -1,7 +1,8 @@
 # How to roll a Spark Standalone cluster on GCP 
 ## Create disk image
 1. Create new instance on GCP - https://console.cloud.google.com/compute/instances
-1vCPU and 3.75 GB memory - micro does not work.
+1vCPU and 3.75 GB memory - micro does not work. 
+Allow HTTP and HTTPS traffic.
 2. Initialize gcloud settings 
 Run `gcloud init` and follow prompts for the project
 3. SSH - copy SSH command from GCP
@@ -58,5 +59,6 @@ Note: the OpenJDK version does not work with Spark - you have to install the Ora
 5. `./bin/spark-bench.sh ../spark/benchmark_confs/<CONF_NAME>`
 Notes: Minimium memory requirements is probably around 265.4 MB, memory cannot include decimals in the conf file, benchmark-output file needs extension.
 
+curl -u admin:admin -H 'Content-type: application/json' localhost:8181/restconf/operational/network-topology:network-topology -> Open Daylight
 
 
