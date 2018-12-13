@@ -833,6 +833,7 @@ class SparkContext(config: SparkConf) extends Logging {
       path: String,
       minPartitions: Int = defaultMinPartitions): RDD[String] = withScope {
     assertNotStopped()
+    logError(s"READING FROM TEXT FILE ${path}")
     hadoopFile(path, classOf[TextInputFormat], classOf[LongWritable], classOf[Text],
       minPartitions).map(pair => pair._2.toString).setName(path)
   }
@@ -1035,6 +1036,7 @@ class SparkContext(config: SparkConf) extends Logging {
 
     // This is a hack to enforce loading hdfs-site.xml.
     // See SPARK-11227 for details.
+    logError(s"WE ARE IN HADOOP FILE path ${path}")
     FileSystem.getLocal(hadoopConfiguration)
 
     // A Hadoop configuration can be about 10 KB, which is pretty big, so broadcast it.
