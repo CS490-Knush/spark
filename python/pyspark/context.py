@@ -578,6 +578,7 @@ class SparkContext(object):
         [u'Hello world!']
         """
         minPartitions = minPartitions or min(self.defaultParallelism, 2)
+        print("Reading text file")
         return RDD(self._jsc.textFile(name, minPartitions), self,
                    UTF8Deserializer(use_unicode))
 
