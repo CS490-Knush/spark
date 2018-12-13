@@ -26,23 +26,23 @@ from pyspark import SparkContext
 
 
 if __name__ == "__main__":
-    # if len(sys.argv) != 2:
-    #     print("Usage: wordcount <file>", file=sys.stderr)
-    #     exit(-1)
+    if len(sys.argv) != 2:
+        print("Usage: output.py <file>", file=sys.stderr)
+        exit(-1)
 
     # spark = SparkSession\
     #     .builder\
     #     .appName("PythonWordCount")\
     #     .getOrCreate()
 
-    sc = SparkContext("spark://instance-2.us-east1-b.c.cpsc490-222104.internal:7077", "First App")
+    sc = SparkContext("local", "First App")
 
     # data = [1, 2, 3, 4, 5]
     # distData = sc.parallelize(data)
 
     # distData.persist()
 
-    lines = sc.textFile("examples/src/main/python/input.txt", 2)
+    lines = sc.textFile(sys.argv[1])
     # lines_par = sc.parallelize(lines)
 
     lines.setName("lines")
@@ -70,7 +70,6 @@ if __name__ == "__main__":
     myrdd.cache()
     myrdd.collect()
 
-    input()
     # counts = text_file.flatMap(lambda line: line.split(" ")) \
     #          .map(lambda word: (word, 1)) \
     #          .reduceByKey(lambda a, b: a + b)
